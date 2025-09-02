@@ -407,14 +407,14 @@ module HassRequests
     )
   end
 
-  def socket_on(entity_id)
+  def outlet_on(entity_id)
     send_data(
       type: :call_service, domain: :switch, service: :turn_on,
       target: { entity_id: entity_id }
     )
   end
 
-  def socket_off(entity_id)
+  def outlet_off(entity_id)
     send_data(
       type: :call_service, domain: :switch, service: :turn_off,
       target: { entity_id: entity_id }
