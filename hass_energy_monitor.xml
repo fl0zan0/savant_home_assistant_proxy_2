@@ -87,7 +87,7 @@
         </data>
         <constant type="character">attr_name=state&amp;attr_value=</constant>
         <data type="character" terminator_type="end_of_data">
-          <update state="Chan1Power" type="string"></update>
+          <update state="Chan1Power" type="integer"></update>
         </data>
       </status_message>
     </status_messages>
