@@ -357,6 +357,14 @@ module HassRequests
     level.to_i.zero? ? dimmer_off(entity_id) : dimmer_on(entity_id, level)
   end
 
+  def light_set_color_temp(entity_id, kelvin)
+    send_data(
+      type: :call_service, domain: :light, service: :turn_on,
+      service_data: { color_temp_kelvin: kelvin.to_i },
+      target: { entity_id: entity_id }
+    )
+  end
+
   def shade_set(entity_id, level)
     send_data(
       type: :call_service, domain: :cover, service: :set_cover_position,
@@ -407,14 +415,14 @@ module HassRequests
     )
   end
 
-  def socket_on(entity_id)
+  def outlet_on(entity_id)
     send_data(
       type: :call_service, domain: :switch, service: :turn_on,
       target: { entity_id: entity_id }
     )
   end
 
-  def socket_off(entity_id)
+  def outlet_off(entity_id)
     send_data(
       type: :call_service, domain: :switch, service: :turn_off,
       target: { entity_id: entity_id }

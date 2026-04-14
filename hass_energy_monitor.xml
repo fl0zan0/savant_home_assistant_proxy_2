@@ -3,7 +3,7 @@
   xsi:noNamespaceSchemaLocation="racepoint_component_profile.xsd"
   manufacturer="Hass" model="Energy_Monitor" alias="Hass Energy monitoring"
   device_class="Energy_Resource_monitor"
-  minimum_component_engine_version="10.2" rpm_xml_version="1.10">
+  minimum_component_engine_version="10.2" rpm_xml_version="1.11">
 
   <notes>
 
@@ -87,7 +87,7 @@
         </data>
         <constant type="character">attr_name=state&amp;attr_value=</constant>
         <data type="character" terminator_type="end_of_data">
-          <update state="Chan1Power" type="string"></update>
+          <update state="Chan1Power" type="integer"></update>
         </data>
       </status_message>
     </status_messages>
