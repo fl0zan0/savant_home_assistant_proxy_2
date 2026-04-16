@@ -357,10 +357,12 @@ module HassRequests
     level.to_i.zero? ? dimmer_off(entity_id) : dimmer_on(entity_id, level)
   end
 
-  def light_set_color_temp(entity_id, kelvin)
+  def light_set_color_temp(entity_id, savant_value)
+    v = savant_value.to_f
+    kelvin = ((v * 43.33) + 2202).round
     send_data(
       type: :call_service, domain: :light, service: :turn_on,
-      service_data: { color_temp_kelvin: kelvin.to_i },
+      service_data: { color_temp_kelvin: kelvin },
       target: { entity_id: entity_id }
     )
   end
