@@ -359,7 +359,17 @@ module HassRequests
 
   def light_set_color_temp(entity_id, savant_value)
     v = savant_value.to_f
-    kelvin = ((v * 43.33) + 2202).round
+    kelvin = ((v * 33) + 2200).round
+    send_data(
+      type: :call_service, domain: :light, service: :turn_on,
+      service_data: { color_temp_kelvin: kelvin },
+      target: { entity_id: entity_id }
+    )
+  end
+
+    def lumaris_set_color_temp(entity_id, savant_value)
+    v = savant_value.to_f
+    kelvin = ((v * 22) + 1800).round
     send_data(
       type: :call_service, domain: :light, service: :turn_on,
       service_data: { color_temp_kelvin: kelvin },
