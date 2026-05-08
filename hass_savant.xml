@@ -153,14 +153,14 @@
               <update state="IsDimmerOn" type="boolean">true</update>
               <update state="LightPowerStatus" type="string">ON</update>
               <update state="IsLightOn" type="boolean">true</update>
-              <update state="GroupisLightOn" type="boolean">true</update
+              <update state="GroupisLightOn" type="boolean">true</update>
               <update state="GarageDoorStatus" type="string">Open</update>
             </map>
             <map key="off">
               <update state="IsDimmerOn" type="boolean">false</update>
               <update state="LightPowerStatus" type="string">OFF</update>
               <update state="IsLightOn" type="boolean">false</update>
-              <update state="GroupisLightOn" type="boolean">false</update
+              <update state="GroupisLightOn" type="boolean">false</update>
               <update state="GarageDoorStatus" type="string">Closed</update>
               <update state="DimmerLevel" type="integer">0</update>
             </map>
