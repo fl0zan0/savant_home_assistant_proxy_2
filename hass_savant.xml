@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="racepoint_component_profile.xsd" manufacturer="Hass" model="Savant" alias="Home Assistant"
-  device_class="Lighting_controller" minimum_component_engine_version="0" rpm_xml_version="4.2">
+  device_class="Lighting_controller" minimum_component_engine_version="0" rpm_xml_version="4.3">
 
   <notes>
   4.2 Added wall plugs with switch domain (all sockets, wall plugs, lutron inline switch)
@@ -373,6 +373,24 @@
         </command_interface>
       </action>
 
+      <action name="ButtonPress">
+        <action_argument name="Address1" note="Button Entity ID"/>
+        <action_argument name="Address2" note="LED Feedback Entity ID"/>
+        <action_argument name="Address3" note="not used"/>
+        <action_argument name="Address4" note="not used"/>
+        <action_argument name="Address5" note="not used"/>
+        <action_argument name="Address6" note="not used"/>
+        <command_interface interface="ip">
+          <command response_required="no" partial_response="yes">
+            <command_string type="character">button_press, </command_string>
+            <parameter_list>
+              <parameter parameter_data_type="character" action_argument="Address1"/>
+            </parameter_list>
+            <delay ms_delay="100"/>
+          </command>
+        </command_interface>
+      </action>
+
       <entity name="Dimmer Group" address_components="1">
         <slider_representation>
           <press_action name="DimmerSet"/>
@@ -412,6 +430,21 @@
         </toggle_button_representation>
         <query_status_with_action name="TrackEntity" period_ms="0">
           <with_arg name="Address1" address_component="1" format="%s" />
+        </query_status_with_action>
+      </entity>
+
+      <entity name="Keypad Button" address_components="2">
+        <toggle_button_representation>
+          <release_action name="ButtonPress"> </release_action>
+          <toggle_release_action name="ButtonPress"> </toggle_release_action>
+          <osd_press_action name="ButtonPress"> </osd_press_action>
+          <osd_hold_action name="ButtonPress"> </osd_hold_action>
+          <toggleOnUsingState name="IsLightOn">
+            <unique_identifier name="Address2" address_component="2" format="%s"/>
+          </toggleOnUsingState>
+        </toggle_button_representation>
+        <query_status_with_action name="TrackEntity" period_ms="0">
+          <with_arg name="Address1" address_component="2" format="%s" />
         </query_status_with_action>
       </entity>
       
