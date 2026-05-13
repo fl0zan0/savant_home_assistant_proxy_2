@@ -209,8 +209,17 @@ module HassMessageParsingMethods
 
   def update_with_hash(parent_key, msg_hash, parents = [])
     arr = msg_hash.map do |k, v|
-      # We add this key to the parents chain for deeper nesting
-      update_hass_data(parent_key, parents + [k], k, v) if included_with_filter?(k)
+      if k == 'hs_color' && v.is_a?(Array) && v.length == 2
+        # HA returns [hue 0-360, sat 0-100]; Savant slider expects 0-100 for both.
+        hue_pct = (v[0].to_f / 3.6).round
+        sat = v[1].to_f.round
+        @hs_state ||= {}
+        @hs_state[parent_key] = [v[0].to_f, v[1].to_f]
+        update_hass_data(parent_key, parents + ['hue'], 'hue', hue_pct) if included_with_filter?('hue')
+        update_hass_data(parent_key, parents + ['saturation'], 'saturation', sat) if included_with_filter?('saturation')
+      elsif included_with_filter?(k)
+        update_hass_data(parent_key, parents + [k], k, v)
+      end
       "#{k}:#{v}"
     end
 
