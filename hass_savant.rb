@@ -357,7 +357,7 @@ module HassRequests
     level.to_i.zero? ? dimmer_off(entity_id) : dimmer_on(entity_id, level)
   end
 
-  def light_set_color_temp(entity_id, savant_value)
+  def color_temp_kelvin_set(entity_id, savant_value)
     v = savant_value.to_f
     kelvin = ((v * 33) + 2200).round
     send_data(
@@ -367,7 +367,7 @@ module HassRequests
     )
   end
 
-    def lumaris_set_color_temp(entity_id, savant_value)
+    def lumaris_color_temp_kelvin_set(entity_id, savant_value)
     v = savant_value.to_f
     kelvin = ((v * 22) + 1800).round
     send_data(
