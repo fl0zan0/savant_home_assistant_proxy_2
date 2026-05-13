@@ -3,6 +3,7 @@
   device_class="Lighting_controller" minimum_component_engine_version="0" rpm_xml_version="4.4">
 
   <notes>
+  4.4 Added ColorTemp  
   4.2 Added wall plugs with switch domain (all sockets, wall plugs, lutron inline switch)
   </notes>  
   <control_interfaces preferred="ip">
@@ -387,7 +388,7 @@
         <command_interface interface="ip">
           <command response_required="no">
             <parameter_list>
-              <parameter parameter_data_type="character">light_set_color_temp,</parameter>
+              <parameter parameter_data_type="character">color_temp_kelvin_set,</parameter>
               <parameter parameter_data_type="character" action_argument="Address1"/>
               <parameter parameter_data_type="character">,</parameter>
               <parameter parameter_data_type="character" action_argument="DimmerLevel"/>
